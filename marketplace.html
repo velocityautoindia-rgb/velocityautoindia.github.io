@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Velocity Auto Marketplace - Buy genuine OEM spare parts for luxury automobiles">
+    <meta name="keywords" content="Auto parts, Spare parts, OEM parts, Luxury cars">
+    <meta name="author" content="Velocity Auto India">
+    
+    <title>Marketplace - Velocity Auto India</title>
+    
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FONT AWESOME ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CUSTOM ANIMATION STYLES -->
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- ANIMATION CONFIG -->
+    <script src="js/config.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003366;
+            --secondary: #C0C0C0;
+            --accent: #FFD700;
+            --background: #FFFFFF;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --border-light: #E8E8E8;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background: var(--background);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 { font-size: 40px; }
+        h3 { font-size: 24px; }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* MAIN CONTENT */
+        .marketplace-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px 50px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px 0;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-light);
+        }
+
+        /* SEARCH & FILTER BAR */
+        .search-filter-bar {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            background: white;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:hover {
+            border-color: var(--accent);
+        }
+
+        /* MARKETPLACE LAYOUT */
+        .marketplace-wrapper {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-item a {
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item a:hover {
+            color: var(--accent);
+        }
+
+        .category-count {
+            background: var(--border-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text);
+        }
+
+        .price-filter {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .price-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* PRODUCT GRID */
+        .products-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .sort-by {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-image i {
+            font-size: 40px;
+            color: var(--secondary);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .product-info {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-brand {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .stars {
+            color: var(--accent);
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .discount {
+            font-size: 12px;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .product-stock {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, var(--primary), #004d99);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+        }
+
+        .add-to-cart-btn.added {
+            background: #27ae60;
+        }
+
+        /* PAGINATION */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .pagination button {
+            padding: 10px 15px;
+            border: 2px solid var(--border-light);
+            background: white;
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .pagination button.active {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .marketplace-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .search-filter-bar {
+                flex-direction: column;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            nav ul {
+                gap: 25px;
+            }
+
+            .nav-container {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-gauge-high"></i>
+                <span>VELOCITY</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#brands">Brands</a></li>
+                    <li><a href="marketplace.html" style="color: var(--accent);">Marketplace</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <div style="margin-top: 80px;">
+        <div class="page-header">
+            <h1>Marketplace</h1>
+            <p>Genuine OEM Spare Parts for Luxury Automobiles</p>
+        </div>
+    </div>
+
+    <!-- MAIN MARKETPLACE CONTAINER -->
+    <div class="marketplace-container">
+        <!-- SEARCH & FILTER BAR -->
+        <div class="search-filter-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for parts, brands...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-group">
+                <select class="filter-select" id="brandFilter">
+                    <option value="">All Brands</option>
+                    <option value="bentley">Bentley</option>
+                    <option value="rolls-royce">Rolls Royce</option>
+                    <option value="lamborghini">Lamborghini</option>
+                    <option value="ferrari">Ferrari</option>
+                    <option value="porsche">Porsche</option>
+                    <option value="maserati">Maserati</option>
+                </select>
+                <select class="filter-select" id="priceFilter">
+                    <option value="">All Prices</option>
+                    <option value="0-50000">₹0 - ₹50,000</option>
+                    <option value="50000-100000">₹50,000 - ₹100,000</option>
+                    <option value="100000-500000">₹100,000 - ₹500,000</option>
+                    <option value="500000+">₹500,000+</option>
+                </select>
+                <select class="filter-select" id="sortFilter">
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- MARKETPLACE LAYOUT -->
+        <div class="marketplace-wrapper">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <!-- CATEGORIES -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">
+                        <i class="fas fa-list"></i> Categories
+                    </div>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('engine'); return false;">
+                                <span>Engine Parts</span>
+                                <span class="category-count">145</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('suspension'); return false;">
+                                <span>Suspension</span>
+                                <span class="category-count">98</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('braking'); return false;">
+                                <span>Braking System</span>
+                                <span class="category-count">76</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('transmission'); return false;">
+                                <span>Transmission</span>
+                                <span class="category-count">52</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('electrical'); return false;">
+                                <span>Electrical</span>
+                                <span class="category-count">186</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByCategory('interiors'); return false;">
+                                <span>Interiors</span>
+                                <span class="category-count">234</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PRICE RANGE -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">
+                        <i class="fas fa-rupee-sign"></i> Price Range
+                    </div>
+                    <div class="price-filter">
+                        <input type="number" class="price-input" placeholder="Min" id="minPrice">
+                        <span>-</span>
+                        <input type="number" class="price-input" placeholder="Max" id="maxPrice">
+                    </div>
+                </div>
+
+                <!-- RATINGS -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">
+                        <i class="fas fa-star"></i> Ratings
+                    </div>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <a href="#" onclick="filterByRating(5); return false;">
+                                <span><i class="fas fa-star" style="color: var(--accent);"></i> 5 Star</span>
+                                <span class="category-count">324</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByRating(4); return false;">
+                                <span><i class="fas fa-star" style="color: var(--accent);"></i> 4 Star & Above</span>
+                                <span class="category-count">512</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" onclick="filterByRating(3); return false;">
+                                <span><i class="fas fa-star" style="color: var(--accent);"></i> 3 Star & Above</span>
+                                <span class="category-count">689</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- PRODUCTS SECTION -->
+            <div class="products-section">
+                <!-- PRODUCTS HEADER -->
+                <div class="products-header">
+                    <div>
+                        <p style="color: var(--text-light); font-size: 14px;">Showing <strong id="productCount">24</strong> products</p>
+                    </div>
+                    <div class="sort-by">
+                        <span style="font-size: 14px; color: var(--text-light);">Sort by:</span>
+                        <select class="filter-select" id="sortBy" onchange="sortProducts(this.value)">
+                            <option value="newest">Newest</option>
+                            <option value="popular">Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- PRODUCTS GRID -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="pagination" id="pagination">
+                    <!-- Pagination buttons will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/config.js"></script>
+    <script src="js/animations.js" defer></script>
+
+    <script>
+        // Sample Product Data
+        const products = [
+            { id: 1, name: "Carbon Fiber Intake System", brand: "bentley", category: "engine", price: 85000, originalPrice: 95000, rating: 4.8, reviews: 156, image: "🔧", badge: "Premium", stock: true },
+            { id: 2, name: "Titanium Exhaust Manifold", brand: "rolls-royce", category: "engine", price: 125000, originalPrice: 145000, rating: 4.9, reviews: 203, image: "⚙️", badge: "Limited", stock: true },
+            { id: 3, name: "Performance Suspension Kit", brand: "lamborghini", category: "suspension", price: 155000, originalPrice: 180000, rating: 4.7, reviews: 89, image: "🛠️", badge: "New", stock: true },
+            { id: 4, name: "Ceramic Brake Pads", brand: "ferrari", category: "braking", price: 45000, originalPrice: 55000, rating: 4.6, reviews: 124, image: "🔩", badge: "", stock: true },
+            { id: 5, name: "Transmission Filter Pack", brand: "porsche", category: "transmission", price: 32000, originalPrice: 40000, rating: 4.5, reviews: 76, image: "🔧", badge: "", stock: true },
+            { id: 6, name: "LED Headlight Assembly", brand: "maserati", category: "electrical", price: 78000, originalPrice: 92000, rating: 4.8, reviews: 145, image: "💡", badge: "Popular", stock: true },
+            { id: 7, name: "Premium Leather Seat Cover", brand: "bentley", category: "interiors", price: 52000, originalPrice: 65000, rating: 4.7, reviews: 112, image: "🪑", badge: "", stock: true },
+            { id: 8, name: "Carbon Steering Wheel", brand: "rolls-royce", category: "interiors", price: 95000, originalPrice: 115000, rating: 4.9, reviews: 178, image: "🎛️", badge: "Luxury", stock: true },
+            { id: 9, name: "Turbo Boost Valve", brand: "lamborghini", category: "engine", price: 110000, originalPrice: 130000, rating: 4.6, reviews: 98, image: "⚡", badge: "", stock: true },
+            { id: 10, name: "Adaptive Damper System", brand: "ferrari", category: "suspension", price: 145000, originalPrice: 170000, rating: 4.8, reviews: 134, image: "🌀", badge: "Premium", stock: true },
+            { id: 11, name: "Anti-Lock Braking Module", brand: "porsche", category: "braking", price: 68000, originalPrice: 82000, rating: 4.7, reviews: 91, image: "🔐", badge: "", stock: true },
+            { id: 12, name: "Ambient Lighting Kit", brand: "maserati", category: "electrical", price: 38000, originalPrice: 48000, rating: 4.5, reviews: 67, image: "✨", badge: "", stock: true },
+            { id: 13, name: "Engine Block 3.8L", brand: "bentley", category: "engine", price: 340000, originalPrice: 400000, rating: 4.9, reviews: 45, image: "🏢", badge: "Rare", stock: true },
+            { id: 14, name: "Luxury Floor Mats Set", brand: "rolls-royce", category: "interiors", price: 25000, originalPrice: 35000, rating: 4.6, reviews: 156, image: "🧵", badge: "", stock: true },
+            { id: 15, name: "Air Suspension Pump", brand: "lamborghini", category: "suspension", price: 98000, originalPrice: 115000, rating: 4.7, reviews: 82, image: "💨", badge: "New", stock: true },
+            { id: 16, name: "Brembo Brake Rotors", brand: "ferrari", category: "braking", price: 62000, originalPrice: 75000, rating: 4.8, reviews: 167, image: "🔴", badge: "Popular", stock: true },
+            { id: 17, name: "Stability Control Unit", brand: "porsche", category: "electrical", price: 85000, originalPrice: 100000, rating: 4.7, reviews: 111, image: "⚖️", badge: "", stock: true },
+            { id: 18, name: "Premium Door Lock Actuator", brand: "maserati", category: "electrical", price: 28000, originalPrice: 35000, rating: 4.5, reviews: 73, image: "🔑", badge: "", stock: true },
+            { id: 19, name: "Transmission Control Unit", brand: "bentley", category: "transmission", price: 175000, originalPrice: 210000, rating: 4.8, reviews: 58, image: "🎮", badge: "Premium", stock: true },
+            { id: 20, name: "Racing Suspension Strobe", brand: "rolls-royce", category: "suspension", price: 125000, originalPrice: 150000, rating: 4.6, reviews: 79, image: "📏", badge: "", stock: true },
+            { id: 21, name: "Sport Air Filter", brand: "lamborghini", category: "engine", price: 18000, originalPrice: 24000, rating: 4.7, reviews: 189, image: "🌬️", badge: "", stock: true },
+            { id: 22, name: "Performance Spark Plugs", brand: "ferrari", category: "engine", price: 12000, originalPrice: 16000, rating: 4.6, reviews: 234, image: "⚡", badge: "Best Seller", stock: true },
+            { id: 23, name: "Brake Fluid Reservoir", brand: "porsche", category: "braking", price: 15000, originalPrice: 20000, rating: 4.5, reviews: 56, image: "💧", badge: "", stock: true },
+            { id: 24, name: "Door Trim Panel Set", brand: "maserati", category: "interiors", price: 45000, originalPrice: 58000, rating: 4.7, reviews: 94, image: "🚪", badge: "", stock: true }
+        ];
+
+        let filteredProducts = [...products];
+        let currentPage = 1;
+        const productsPerPage = 12;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('brandFilter').addEventListener('change', handleFilter);
+            document.getElementById('priceFilter').addEventListener('change', handleFilter);
+            document.getElementById('sortFilter').addEventListener('change', handleFilter);
+        }
+
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredProducts = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) ||
+                p.brand.toLowerCase().includes(searchTerm)
+            );
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function handleFilter() {
+            const brand = document.getElementById('brandFilter').value;
+            const price = document.getElementById('priceFilter').value;
+            
+            filteredProducts = products.filter(p => {
+                if (brand && p.brand !== brand) return false;
+                if (price) {
+                    const [min, max] = price.split('-').map(v => v === '+' ? Infinity : parseInt(v));
+                    if (p.price < min || (max && p.price > max)) return false;
+                }
+                return true;
+            });
+            
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function filterByCategory(category) {
+            filteredProducts = products.filter(p => p.category === category);
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function filterByRating(minRating) {
+            filteredProducts = products.filter(p => p.rating >= minRating);
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function sortProducts(sortBy) {
+            switch(sortBy) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'popular':
+                    filteredProducts.sort((a, b) => b.reviews - a.reviews);
+                    break;
+                default:
+                    filteredProducts.sort((a, b) => b.id - a.id);
+            }
+            currentPage = 1;
+            displayProducts();
+        }
+
+        function displayProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const pageProducts = filteredProducts.slice(start, end);
+
+            pageProducts.forEach(product => {
+                const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+                const card = document.createElement('div');
+                card.className = 'product-card animate-on-scroll';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <span style="font-size: 60px;">${product.image}</span>
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand.toUpperCase()}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">
+                            <span class="stars">
+                                ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5-Math.floor(product.rating))}
+                            </span>
+                            <span class="rating-count">${product.rating} (${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹${product.price.toLocaleString()}</span>
+                            <span class="original-price">₹${product.originalPrice.toLocaleString()}</span>
+                            <span class="discount">${discount}% OFF</span>
+                        </div>
+                        <div class="product-stock" style="color: #27ae60;">✓ In Stock</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('productCount').textContent = filteredProducts.length;
+            displayPagination();
+        }
+
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = i;
+                btn.className = i === currentPage ? 'active' : '';
+                btn.onclick = () => {
+                    currentPage = i;
+                    displayProducts();
+                    window.scrollTo({ top: 400, behavior: 'smooth' });
+                };
+                pagination.appendChild(btn);
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const cartCount = document.getElementById('cartCount');
+            let count = parseInt(cartCount.textContent);
+            cartCount.textContent = count + 1;
+            
+            const btn = event.target;
+            btn.classList.add('added');
+            btn.textContent = '✓ Added';
+            
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.textContent = 'Add to Cart';
+            }, 2000);
+        }
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
