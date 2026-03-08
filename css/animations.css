@@ -1,0 +1,11 @@
+/* Minimal CSS for Velomax Auto India */
+:root {
+  --primary-color: #FFD700;
+  --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+  h1, h2, h3 { word-break: break-word; }
+}
