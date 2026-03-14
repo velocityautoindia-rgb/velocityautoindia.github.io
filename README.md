@@ -1,1 +1,1 @@
-# Velomax Auto India - Modern OEM Parts
+# Velocity Auto India - Genuine OEM Parts
