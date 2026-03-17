@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launching Soon | Velocity Auto India</title>
+    <meta name="description" content="Velocity Auto India is launching on 19th March 2026. Genuine OEM luxury car parts for Mercedes, BMW, Audi, Porsche, Bentley, Rolls Royce & more.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* RESET & ROOT */
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+          --navy:#003366;
+          --gold:#FFD700;
+          --gold2:#FFA500;
+          --text:#1a1a1a;
+        }
+        body{
+          font-family:'Montserrat',sans-serif;
+          background:#000;
+          color:#fff;
+          min-height:100vh;
+          overflow-x:hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* ANIMATED BACKGROUND */
+        .bg-wrap{
+          position:fixed;
+          top:0;left:0;right:0;bottom:0;
+          z-index:0;
+          background: linear-gradient(135deg,rgba(0,0,0,.92) 0%,rgba(0,30,70,.88) 50%,rgba(0,0,0,.95) 100%);
+        }
+
+        /* MAIN CONTENT */
+        .cs-main{
+          position:relative;
+          z-index:10;
+          text-align:center;
+          padding:40px;
+        }
+
+        .launch-label{
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          background:rgba(255,215,0,.1);
+          border:1px solid rgba(255,215,0,.3);
+          color:var(--gold);
+          padding:8px 22px;
+          border-radius:30px;
+          font-size:11px;
+          font-weight:700;
+          text-transform:uppercase;
+          letter-spacing:2px;
+          margin-bottom:28px;
+        }
+
+        .cs-headline{
+          font-family:'Playfair Display',serif;
+          font-size:clamp(32px, 8vw, 62px);
+          font-weight:900;
+          line-height:1.1;
+          margin-bottom:20px;
+        }
+
+        .line2{
+          display:block;
+          color: var(--gold);
+        }
+
+        /* COUNTDOWN */
+        .countdown{display:flex;gap:20px;justify-content:center;margin: 40px 0;}
+        .cd-box{display:flex;flex-direction:column;align-items:center;min-width:80px}
+        .cd-num{
+          font-family:'Playfair Display',serif;
+          font-size:48px;
+          font-weight:900;
+          color:#fff;
+          background:rgba(255,255,255,.05);
+          border:1px solid rgba(255,215,0,.25);
+          border-radius:12px;
+          width:80px;height:80px;
+          display:flex;align-items:center;justify-content:center;
+        }
+        .cd-unit{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,215,0,.7);margin-top:8px}
+
+        /* BUTTONS */
+        .contact-buttons{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+        .btn{padding:12px 25px;border-radius:5px;font-weight:bold;text-decoration:none;display:flex;align-items:center;gap:10px;transition: 0.3s;}
+        .btn-whatsapp{background-color:#25d366;color:white;}
+        .btn-email{border:1px solid white;color:white;}
+        .btn:hover{opacity: 0.8;}
+    </style>
+</head>
+<body>
+
+<div class="bg-wrap"></div>
+
+<main class="cs-main">
+    <div class="launch-label">COMING SOON</div>
+
+    <h1 class="cs-headline">
+        <span>Experience Luxury</span>
+        <span class="line2">Redefined</span>
+    </h1>
+
+    <div class="countdown">
+        <div class="cd-box"><div class="cd-num" id="days">00</div><div class="cd-unit">Days</div></div>
+        <div class="cd-box"><div class="cd-num" id="hours">00</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-box"><div class="cd-num" id="minutes">00</div><div class="cd-unit">Mins</div></div>
+        <div class="cd-box"><div class="cd-num" id="seconds">00</div><div class="cd-unit">Secs</div></div>
+    </div>
+
+    <div class="contact-buttons">
+        <a href="https://wa.me/919611991902" class="btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+        <a href="mailto:kumarvelocityautoindia@gmail.com" class="btn btn-email">
+            <i class="fas fa-envelope"></i> Email Us
+        </a>
+    </div>
+</main>
+
+<script>
+    const launchDate = new Date("March 19, 2026 09:00:00").getTime();
+
+    setInterval(function() {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = d.toString().padStart(2, '0');
+        document.getElementById("hours").innerHTML = h.toString().padStart(2, '0');
+        document.getElementById("minutes").innerHTML = m.toString().padStart(2, '0');
+        document.getElementById("seconds").innerHTML = s.toString().padStart(2, '0');
+
+        if (distance < 0) {
+            document.querySelector(".cs-main").innerHTML = "<h1 style='color:#FFD700;'>WE ARE LIVE!</h1>";
+        }
+    }, 1000);
+</script>
+</body>
+</html>
