@@ -96,29 +96,23 @@
     </div>
 </div>
 
+<main class="parts-container" id="partsList">
+    </main>
+
+<section class="vin-banner">
+    <h2>Can't find a specific part?</h2>
+    <p>Provide your 17-digit VIN for an exact compatibility match.</p>
+    <div class="vin-form">
+        <input type="text" id="vinBox" placeholder="Enter VIN Number">
+        <button onclick="checkVin()">VERIFY</button>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Velocity Auto India | Authenticity Guaranteed
+</footer>
+
 <script src="marketplace.js"></script>
-                    <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
-                    <div class="card-content">
-                        <span class="brand">${item.brand}</span>
-                        <h3 class="title">${item.part}</h3>
-                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">${item.desc}</p>
-                        <a href="https://wa.me/919611991902?text=I am interested in: ${item.part} for ${item.brand}" class="btn-inquiry">I NEED THIS PART</a>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    // 4. VIN CHECK FUNCTION
-    function checkVin() {
-        const v = document.getElementById('vinBox').value;
-        if(v.length < 1) return alert("Please enter a VIN");
-        window.location.href = `https://wa.me/919611991902?text=VIN Compatibility Check: ${v}`;
-    }
-
-    // Initialize display on load
-    search();
-</script>
 
 </body>
 </html>
