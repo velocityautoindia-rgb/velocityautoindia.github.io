@@ -29,25 +29,44 @@ const fuse = new Fuse(inventory, {
     keys: ['brandName', 'part', 'description'],
     threshold: 0.3
 });
-
 function search() {
     const term = document.getElementById('searchInput').value;
     const grid = document.getElementById('partsList');
     
-    // If the box is empty, show a welcoming message
+    // 1. If the box is empty, show a welcoming message
     if (term.length === 0) {
         grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:50px;">Explore our catalog of 175+ Luxury Parts...</p>';
         return;
     }
 
-    // Don't search until at least 2 letters are typed (prevents messy results)
+    // 2. Don't search until at least 2 letters are typed
     if (term.length < 2) return;
 
     const results = fuse.search(term);
     grid.innerHTML = ''; 
-    
-    // ... rest of your code ...
 
+    // 3. If no results found
+    if (results.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:50px;">Part not found. Click "Contact Expert" for custom sourcing.</p>';
+        return;
+    }
+
+    // 4. Build the cards for each result
+    results.forEach(r => {
+        const item = r.item;
+        grid.innerHTML += `
+            <div class="card">
+                <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
+                <div class="card-content">
+                    <span class="brand">${item.brandName}</span>
+                    <h3 class="title">${item.part}</h3>
+                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">${item.description}</p>
+                    <a href="https://wa.me/919611991902?text=Inquiry for: ${item.part} (${item.brandName})" class="btn-inquiry">I NEED THIS PART</a>
+                </div>
+            </div>
+        `;
+    });
+}
 // 4. VIN VERIFICATION
 function checkVin() {
     const v = document.getElementById('vinBox').value;
