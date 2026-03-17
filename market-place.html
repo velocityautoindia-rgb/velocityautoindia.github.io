@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Marketplace | Velocity Auto India</title>
+    <meta name="description" content="Genuine OEM parts for Bentley, Rolls Royce, BMW, and Mercedes. VIN-matched and delivered across India.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --navy: #001a33;
+            --gold: #FFD700;
+            --white: #ffffff;
+            --light-gray: #f4f7f6;
+            --border: #e0e0e0;
+            --text: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--white); color: var(--text); line-height: 1.6; }
+
+        /* NAVIGATION */
+        header { background: var(--white); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 24px; color: var(--navy); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .nav-links a { text-decoration: none; color: var(--navy); font-weight: 600; font-size: 14px; margin-left: 25px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* HERO SECTION */
+        .hero { 
+            background: linear-gradient(rgba(0, 26, 51, 0.8), rgba(0, 26, 51, 0.8)), url('velocity-dealership.png') center/cover no-repeat;
+            height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 20px;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 48px); margin-bottom: 10px; }
+        .hero p { font-size: 18px; opacity: 0.9; font-weight: 300; }
+
+        /* FILTER & SEARCH BAR */
+        .tools-container { background: var(--light-gray); padding: 20px 5%; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+        .search-box { position: relative; flex: 1; min-width: 300px; }
+        .search-box input { width: 100%; padding: 12px 45px; border-radius: 30px; border: 1px solid var(--border); outline: none; font-family: inherit; }
+        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #999; }
+
+        /* MARKETPLACE GRID */
+        .marketplace { padding: 50px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .part-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.4s ease; position: relative; }
+        .part-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .part-img { height: 220px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #ccc; }
+        
+        .part-info { padding: 20px; }
+        .brand-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; }
+        .part-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); margin: 5px 0; }
+        .part-sku { font-size: 12px; color: #888; font-family: monospace; }
+        .part-price { font-size: 18px; font-weight: 700; color: var(--navy); margin-top: 15px; }
+
+        .btn-inquire { 
+            display: block; width: 100%; padding: 12px; background: var(--navy); color: var(--white); text-align: center; text-decoration: none; 
+            border-radius: 5px; font-weight: 600; margin-top: 15px; transition: 0.3s;
+        }
+        .btn-inquire:hover { background: var(--gold); color: var(--navy); }
+
+        /* VIN CHECK BANNER */
+        .vin-banner { background: var(--navy); color: var(--white); padding: 60px 5%; text-align: center; }
+        .vin-box { max-width: 600px; margin: 20px auto 0; display: flex; gap: 10px; }
+        .vin-box input { flex: 1; padding: 15px; border-radius: 5px; border: none; font-size: 16px; }
+        .vin-box button { background: var(--gold); color: var(--navy); padding: 0 25px; border: none; border-radius: 5px; font-weight: 700; cursor: pointer; }
+
+        /* FOOTER */
+        footer { background: #0a0a0a; color: #777; padding: 40px 5%; text-align: center; font-size: 14px; }
+        footer b { color: var(--gold); }
+
+        @media (max-width: 768px) { .vin-box { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">VELOCITY <span>AUTO INDIA</span></a>
+    <nav class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="https://wa.me/919611991902" style="color:var(--gold)"><i class="fab fa-whatsapp"></i> CONTACT</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Premier Parts Marketplace</h1>
+    <p>Authentic OEM Components for the World’s Finest Automobiles</p>
+</section>
+
+<div class="tools-container">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="partSearch" placeholder="Search for Bentley, Rolls Royce, Audi, BMW parts..." onkeyup="filterItems()">
+    </div>
+</div>
+
+<main class="marketplace" id="partsGrid">
+    
+    <div class="part-card" data-search="bentley continental gt front grille">
+        <div class="part-img"><i class="fas fa-car-side"></i></div>
+        <div class="part-info">
+            <span class="brand-label">Bentley</span>
+            <h3 class="part-title">Continental GT Front Grille</h3>
+            <p class="part-sku">SKU: BNT-9982-CGT</p>
+            <div class="part-price">Price on Request</div>
+            <a href="https://wa.me/919611991902?text=Inquiry%20for%20Bentley%20Front%20Grille" class="btn-inquire">Inquire on WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="part-card" data-search="rolls royce phantom brake pads">
+        <div class="part-img"><i class="fas fa-gem"></i></div>
+        <div class="part-info">
+            <span class="brand-label">Rolls Royce</span>
+            <h3 class="part-title">Phantom OEM Brake Pad Set</h3>
+            <p class="part-sku">SKU: RR-PH-7721</p>
+            <div class="part-price">Price on Request</div>
+            <a href="https://wa.me/919611991902?text=Inquiry%20for%20Rolls%20Royce%20Brake%20Pads" class="btn-inquire">Inquire on WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="part-card" data-search="mercedes benz s-class headlight">
+        <div class="part-img"><i class="fas fa-lightbulb"></i></div>
+        <div class="part-info">
+            <span class="brand-label">Mercedes-Benz</span>
+            <h3 class="part-title">S-Class W223 LED Headlight</h3>
+            <p class="part-sku">SKU: MB-S223-LH</p>
+            <div class="part-price">Price on Request</div>
+            <a href="https://wa.me/919611991902?text=Inquiry%20for%20Mercedes%20Headlight" class="btn-inquire">Inquire on WhatsApp</a>
+        </div>
+    </div>
+
+</main>
+
+<section class="vin-banner">
+    <h2>Can't find your part?</h2>
+    <p>Submit your VIN for a 100% accurate compatibility match.</p>
+    <div class="vin-box">
+        <input type="text" id="vinInput" placeholder="Enter your 17-digit VIN number">
+        <button onclick="sendVin()">Verify Now</button>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 <b>Velocity Auto India</b>. All Rights Reserved.</p>
+    <p style="margin-top:10px; font-size:12px;">Global Sourcing | EU Standards | Nationwide Delivery</p>
+</footer>
+
+<script>
+    // Search Functionality
+    function filterItems() {
+        const input = document.getElementById('partSearch').value.toLowerCase();
+        const cards = document.querySelectorAll('.part-card');
+        
+        cards.forEach(card => {
+            const searchText = card.getAttribute('data-search').toLowerCase();
+            if (searchText.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    // VIN WhatsApp Direct
+    function sendVin() {
+        const vin = document.getElementById('vinInput').value;
+        if(vin.length < 5) {
+            alert("Please enter a valid VIN number.");
+            return;
+        }
+        window.location.href = `https://wa.me/919611991902?text=Hello Velocity Auto, I need to check parts for VIN: ${vin}`;
+    }
+</script>
+
+</body>
+</html>
