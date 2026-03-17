@@ -1,4 +1,4 @@
-// 1. THE COMPLETE INVENTORY (Catalog Start)
+// 1. THE COMPLETE INVENTORY
 const inventory = [
     { brandName: "Mercedes M276, BMW N55/B58, Audi EA888, Porsche MA1", part: "Engine Assembly", description: "Complete engine units and long-block rebuilds" },
     { brandName: "Porsche 9A1, BMW S55/S58, Audi RS TFSI", part: "Pistons & Rings", description: "Forged and high-compression piston sets" },
@@ -22,67 +22,67 @@ const inventory = [
     { brandName: "Michelin Pilot Sport, Pirelli P-Zero, Continental", part: "Performance Tires", description: "Z-rated tires for high-speed luxury vehicles" },
     { brandName: "Castrol Edge, Mobil 1, Motul (Luxury Grade)", part: "Full Synthetic Oil", description: "Brand-approved performance lubricants" }
 ];
-// (Catalog End)
 
 // 2. INITIALIZE FUZZY SEARCH
 const fuse = new Fuse(inventory, {
     keys: ['brandName', 'part', 'description'],
     threshold: 0.3
 });
+
 function search() {
     const term = document.getElementById('searchInput').value;
     const grid = document.getElementById('partsList');
     
-    // 1. If the box is empty, show a welcoming message
     if (term.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:50px;">Explore our catalog of 175+ Luxury Parts...</p>';
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:50px;">Explore our catalog of Luxury Parts...</p>';
         return;
     }
 
-    // 2. Don't search until at least 2 letters are typed
     if (term.length < 2) return;
 
     const results = fuse.search(term);
     grid.innerHTML = ''; 
 
-    // 3. If no results found
     if (results.length === 0) {
         grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:50px;">Part not found. Click "Contact Expert" for custom sourcing.</p>';
         return;
     }
 
-    // 4. Build the cards for each result
-  results.forEach(r => {
-    const item = r.item;
-    
-    // Logic to pick the right icon based on the brand name
-    let brandIcon = "fa-car-side"; // Default icon
-    const lowerBrand = item.brandName.toLowerCase();
-    
-    if (lowerBrand.includes("mercedes")) brandIcon = "fa-m-circle"; // Custom icon placeholder
-    if (lowerBrand.includes("bmw")) brandIcon = "fa-b"; 
-    if (lowerBrand.includes("porsche")) brandIcon = "fa-p";
-    if (lowerBrand.includes("audi")) brandIcon = "fa-ring"; 
+    results.forEach(r => {
+        const item = r.item;
+        let brandIcon = "fa-car-side"; // Generic fallback
+        const lowerBrand = item.brandName.toLowerCase();
+        
+        // Updated FontAwesome class names for best compatibility
+        if (lowerBrand.includes("mercedes")) brandIcon = "fa-circle-notch"; 
+        if (lowerBrand.includes("bmw")) brandIcon = "fa-compass"; 
+        if (lowerBrand.includes("porsche")) brandIcon = "fa-shield-halved";
+        if (lowerBrand.includes("audi")) brandIcon = "fa-ring"; 
 
-    grid.innerHTML += `
-        <div class="card">
-            <div class="img-placeholder" style="background: #fdfdfd; border-bottom: 2px solid var(--bg-light);">
-                <i class="fas ${brandIcon}" style="color: var(--navy); opacity: 0.8;"></i>
+        grid.innerHTML += `
+            <div class="card">
+                <div class="img-placeholder">
+                    <i class="fas ${brandIcon}" style="color: var(--navy); font-size: 50px; opacity: 0.8;"></i>
+                </div>
+                <div class="card-content">
+                    <span class="brand">${item.brandName}</span>
+                    <h3 class="title">${item.part}</h3>
+                    <p style="font-size: 13px; color: #555; margin-bottom: 15px; min-height: 40px;">${item.description}</p>
+                    <a href="https://wa.me/919611991902?text=Inquiry for: ${item.part} (${item.brandName})" class="btn-inquiry">
+                        <i class="fab fa-whatsapp"></i> I NEED THIS PART
+                    </a>
+                </div>
             </div>
-            <div class="card-content">
-                <span class="brand" style="color: var(--gold); background: rgba(197, 160, 89, 0.1); padding: 2px 8px; border-radius: 4px;">
-                    ${item.brandName}
-                </span>
-                <h3 class="title">${item.part}</h3>
-                <p style="font-size: 13px; color: #555; margin-bottom: 15px; min-height: 40px;">${item.description}</p>
-                <a href="https://wa.me/919611991902?text=Inquiry for: ${item.part} (${item.brandName})" class="btn-inquiry">
-                    <i class="fab fa-whatsapp"></i> I NEED THIS PART
-                </a>
-            </div>
-        </div>
-    `;
-});
+        `;
+    });
 }
+
+// 3. BRAND FILTER HELPER
+function setSearch(brand) {
+    document.getElementById('searchInput').value = brand;
+    search(); 
+}
+
 // 4. VIN VERIFICATION
 function checkVin() {
     const v = document.getElementById('vinBox').value;
@@ -92,13 +92,3 @@ function checkVin() {
 
 // 5. START UP
 window.onload = search;
-function setSearch(brand) {
-    document.getElementById('searchInput').value = brand;
-    search(); // This triggers the search automatically
-}
-// ... existing code above ...
-
-function setSearch(brand) {
-    document.getElementById('searchInput').value = brand;
-    search(); 
-}
