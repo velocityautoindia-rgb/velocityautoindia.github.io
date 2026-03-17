@@ -1041,22 +1041,18 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#brands">Brands</a></li>
                     <li><a href="market-place.html">Marketplace</a></li>
-                   <li style="list-style: none; margin: 15px 0; perspective: 1000px;">
+                   <li style="list-style: none; margin: 20px 0; display: flex; justify-content: center;">
     <style>
-        @keyframes starWarsFloat {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-                text-shadow: 0 0 0px #FFD700;
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-            }
+        /* The Orbit Animation */
+        @keyframes orbit {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(5px, 5px); }
+            50% { transform: translate(0, 10px); }
+            75% { transform: translate(-5px, 5px); }
+            100% { transform: translate(0, 0); }
         }
-        
-        .float-btn {
+
+        .orbit-btn {
             display: inline-block;
             background-color: #000000;
             color: #FFD700;
@@ -1067,20 +1063,22 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             border: 2px solid #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
             border-radius: 4px;
-            animation: starWarsFloat 1.5s ease-out forwards; /* This triggers the float-in */
-            transition: 0.3s;
+            /* Slow 6-second infinite loop for a premium feel */
+            animation: orbit 6s ease-in-out infinite; 
+            transition: all 0.3s ease;
         }
 
-        .float-btn:hover {
+        .orbit-btn:hover {
             box-shadow: 0 0 30px #FFD700;
-            transform: scale(1.05);
             background: #111;
+            animation-play-state: paused; /* Stops circling when user tries to click */
+            transform: scale(1.1);
         }
     </style>
 
-    <a href="coming-soon.html" class="float-btn">
+    <a href="coming-soon.html" class="orbit-btn">
         Launching 19th March
     </a>
 </li>
