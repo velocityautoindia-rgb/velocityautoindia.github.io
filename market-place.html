@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
     <style>
         :root {
@@ -51,7 +53,7 @@
         .search-wrap i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #aaa; }
 
         /* GRID LAYOUT */
-        .parts-container { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .parts-container { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; min-height: 300px; }
         .card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s ease; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--gold); }
         .img-placeholder { height: 220px; background: #f4f4f4; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #ddd; }
@@ -68,8 +70,9 @@
         /* VIN CHECK */
         .vin-banner { background: var(--navy); color: white; padding: 70px 20px; text-align: center; }
         .vin-form { max-width: 550px; margin: 30px auto 0; display: flex; gap: 10px; }
-        .vin-form input { flex: 1; padding: 15px; border-radius: 6px; border: none; font-size: 16px; }
-        .vin-form button { background: var(--gold); border: none; padding: 0 30px; border-radius: 6px; font-weight: 800; cursor: pointer; color: var(--navy); }
+        .vin-form input { flex: 1; padding: 15px; border-radius: 6px; border: none; font-size: 16px; color: #333; }
+        .vin-form button { background: var(--gold); border: none; padding: 0 30px; border-radius: 6px; font-weight: 800; cursor: pointer; color: var(--navy); transition: 0.3s; }
+        .vin-form button:hover { opacity: 0.9; }
 
         footer { background: #000; color: #666; padding: 40px; text-align: center; font-size: 13px; }
     </style>
@@ -89,28 +92,12 @@
 <div class="search-area">
     <div class="search-wrap">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Search by car brand or part type..." onkeyup="search()">
+        <input type="text" id="searchInput" placeholder="Search by car brand or part type (e.g. BMW Brakes)..." onkeyup="search()">
     </div>
 </div>
 
 <main class="parts-container" id="partsList">
-    <div class="card" data-search="bentley continental gt brake pads">
-        <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
-        <div class="card-content">
-            <span class="brand">Bentley</span>
-            <h3 class="title">Continental GT Ceramic Brakes</h3>
-            <a href="https://wa.me/919611991902?text=Inquiry: Bentley Brake Kit" class="btn-inquiry">Price on Request</a>
-        </div>
-    </div>
-    <div class="card" data-search="rolls royce ghost grill phantom">
-        <div class="img-placeholder"><i class="fas fa-gem"></i></div>
-        <div class="card-content">
-            <span class="brand">Rolls Royce</span>
-            <h3 class="title">Ghost Series II Front Grille</h3>
-            <a href="https://wa.me/919611991902?text=Inquiry: Rolls Royce Grille" class="btn-inquiry">Price on Request</a>
-        </div>
-    </div>
-</main>
+    </main>
 
 <section class="vin-banner">
     <h2>Can't find a specific part?</h2>
@@ -126,20 +113,69 @@
 </footer>
 
 <script>
+    // 1. THE INVENTORY DATA
+    const inventory = [
+        { brand: "Mercedes M276, BMW N55/B58, Audi EA888, Porsche MA1", part: "Engine Assembly", desc: "Complete engine units and rebuilds" },
+        { brand: "Porsche 9A1, BMW S55/S58, Audi RS TFSI", part: "Pistons & Rings", desc: "High-performance pistons and rings" },
+        { brand: "Mercedes Bosch, BMW Siemens, Audi Continental", part: "Fuel Injectors", desc: "High-precision fuel injection systems" },
+        { brand: "Porsche Sport, Mercedes AMG, BMW M, Akrapovic", part: "Performance Exhaust", desc: "High-flow manifolds and systems" },
+        { brand: "Mercedes AIRMATIC, Range Rover EAS, Audi Adaptive", part: "Air Suspension", desc: "Adaptive air suspension systems" },
+        { brand: "Porsche PCCB, Mercedes AMG Carbon, BMW M Carbon", part: "Carbon-Ceramic Brakes", desc: "High-performance ceramic discs" },
+        { brand: "Mercedes 7G-Tronic, BMW ZF 8HP, Audi Tiptronic", part: "Automatic Transmission", desc: "Complete transmission units" },
+        { brand: "Range Rover, Audi Quattro, BMW xDrive", part: "4WD Transfer Case", desc: "All-wheel drive transfer units" },
+        { brand: "Mercedes, BMW, Audi, Volvo", part: "Adaptive Cruise Control", desc: "ACC radar and control modules" },
+        { brand: "Michelin Pilot Sport 4S, Pirelli P-Zero, Continental", part: "Performance Tires", desc: "High-performance luxury tires" }
+    ];
+
+    // 2. INITIALIZE FUZZY SEARCH
+    const fuse = new Fuse(inventory, {
+        keys: ['brand', 'part', 'desc'],
+        threshold: 0.3
+    });
+
+    // 3. SEARCH FUNCTION
     function search() {
-        let term = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.querySelectorAll('.card');
-        cards.forEach(c => {
-            let info = c.getAttribute('data-search');
-            c.style.display = info.includes(term) ? "block" : "none";
+        const term = document.getElementById('searchInput').value;
+        const grid = document.getElementById('partsList');
+        
+        if (term.length < 2) {
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:50px;">Start typing to search 175+ luxury parts...</p>';
+            return;
+        }
+
+        const results = fuse.search(term);
+        grid.innerHTML = ''; 
+
+        if (results.length === 0) {
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:50px;">No match found. Contact our expert for custom sourcing.</p>';
+            return;
+        }
+
+        results.forEach(r => {
+            const item = r.item;
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
+                    <div class="card-content">
+                        <span class="brand">${item.brand}</span>
+                        <h3 class="title">${item.part}</h3>
+                        <p style="font-size: 13px; color: #666; margin-bottom: 15px;">${item.desc}</p>
+                        <a href="https://wa.me/919611991902?text=I am interested in: ${item.part} for ${item.brand}" class="btn-inquiry">I NEED THIS PART</a>
+                    </div>
+                </div>
+            `;
         });
     }
 
+    // 4. VIN CHECK FUNCTION
     function checkVin() {
-        let v = document.getElementById('vinBox').value;
+        const v = document.getElementById('vinBox').value;
         if(v.length < 1) return alert("Please enter a VIN");
         window.location.href = `https://wa.me/919611991902?text=VIN Compatibility Check: ${v}`;
     }
+
+    // Initialize display on load
+    search();
 </script>
 
 </body>
