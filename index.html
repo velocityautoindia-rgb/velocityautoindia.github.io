@@ -1041,26 +1041,46 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#brands">Brands</a></li>
                     <li><a href="market-place.html">Marketplace</a></li>
-                   <li style="list-style: none; margin: 10px 0;">
-    <a href="coming-soon.html" 
-       style="
-        display: inline-block;
-        background-color: #000000; 
-        color: #FFD700; 
-        padding: 12px 25px; 
-        text-decoration: none; 
-        font-family: 'Playfair Display', serif; 
-        font-weight: 900; 
-        text-transform: uppercase; 
-        letter-spacing: 4px; 
-        border: 2px solid #FFD700; 
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-        transition: 0.4s ease-in-out;
-        border-radius: 4px;
-       "
-       onmouseover="this.style.boxShadow='0 0 25px #FFD700'; this.style.transform='scale(1.05)';"
-       onmouseout="this.style.boxShadow='0 0 15px rgba(255, 215, 0, 0.4)'; this.style.transform='scale(1)';"
-    >
+                   <li style="list-style: none; margin: 15px 0; perspective: 1000px;">
+    <style>
+        @keyframes starWarsFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+                text-shadow: 0 0 0px #FFD700;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            }
+        }
+        
+        .float-btn {
+            display: inline-block;
+            background-color: #000000;
+            color: #FFD700;
+            padding: 14px 30px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+            animation: starWarsFloat 1.5s ease-out forwards; /* This triggers the float-in */
+            transition: 0.3s;
+        }
+
+        .float-btn:hover {
+            box-shadow: 0 0 30px #FFD700;
+            transform: scale(1.05);
+            background: #111;
+        }
+    </style>
+
+    <a href="coming-soon.html" class="float-btn">
         Launching 19th March
     </a>
 </li>
