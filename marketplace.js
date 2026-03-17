@@ -26,7 +26,8 @@ const inventory = [
 // 2. INITIALIZE FUZZY SEARCH
 const fuse = new Fuse(inventory, {
     keys: ['brandName', 'part', 'description'],
-    threshold: 0.3
+    threshold: 0.2, // Lowered from 0.3 for higher accuracy
+    distance: 100   // Helps distinguish between similar part names
 });
 
 function search() {
