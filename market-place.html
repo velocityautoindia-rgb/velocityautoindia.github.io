@@ -13,14 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
     <style>
-        :root {
-    --navy: #001a33;
-    --gold: #B8860B;   /* Changed to Dark Goldenrod - much more visible */
-    --accent: #C41E3A; /* New Performance Red for buttons */
-    --white: #ffffff;
-    --bg-light: #f4f7f9;
-    --border: #d1d9e0;
-}
+        :root { 
+            --navy: #001a33;
+            --gold: #c5a059;   /* Visible Gold */
+            --accent: #d32f2f; /* Performance Red */
+            --white: #ffffff;
+            --bg-light: #f4f7f9;
+            --border: #d1d9e0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,9 +35,11 @@
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 1000;
         }
+        .header-left { display: flex; align-items: center; gap: 20px; }
         .logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 22px; color: var(--navy); text-decoration: none; }
         .logo span { color: var(--gold); }
         .nav-link { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+        .back-btn { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 13px; }
 
         /* SHOWROOM HERO */
         .hero { 
@@ -61,20 +62,19 @@
         .img-placeholder { height: 220px; background: #f4f4f4; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #ddd; }
         .card-content { padding: 25px; }
         .brand { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
-        .title { font-family: 'Playfair Display', serif; 
-    font-size: 22px; 
-    font-weight: 800; /* Makes the title thicker and clearer */
-    color: var(--navy); 
-    margin: 8px 0;
+        .title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; color: var(--navy); margin: 8px 0; }
+        
+        .btn-inquiry { 
+            display: block; width: 100%; padding: 14px; background: var(--accent); color: white; text-align: center; 
+            text-decoration: none; border-radius: 6px; margin-top: 20px; font-weight: 700; text-transform: uppercase; transition: 0.3s;
         }
-        .btn-inquiry:hover { background: var(--gold); color: var(--navy); }
+        .btn-inquiry:hover { background: var(--navy); transform: scale(1.02); }
 
-        /* VIN CHECK */
+        /* VIN BANNER */
         .vin-banner { background: var(--navy); color: white; padding: 70px 20px; text-align: center; }
         .vin-form { max-width: 550px; margin: 30px auto 0; display: flex; gap: 10px; }
-        .vin-form input { flex: 1; padding: 15px; border-radius: 6px; border: none; font-size: 16px; color: #333; }
-        .vin-form button { background: var(--gold); border: none; padding: 0 30px; border-radius: 6px; font-weight: 800; cursor: pointer; color: var(--navy); transition: 0.3s; }
-        .vin-form button:hover { opacity: 0.9; }
+        .vin-form input { flex: 1; padding: 15px; border-radius: 6px; border: none; font-size: 16px; }
+        .vin-form button { background: var(--gold); border: none; padding: 0 30px; border-radius: 6px; font-weight: 800; cursor: pointer; color: var(--navy); }
 
         footer { background: #000; color: #666; padding: 40px; text-align: center; font-size: 13px; }
     </style>
@@ -82,7 +82,10 @@
 <body>
 
 <header>
-    <a href="index.html" class="logo">VELOCITY <span>AUTO INDIA</span></a>
+    <div class="header-left">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> BACK</a>
+        <a href="index.html" class="logo">VELOCITY <span>AUTO INDIA</span></a>
+    </div>
     <a href="https://wa.me/919611991902" class="nav-link"><i class="fab fa-whatsapp"></i> CONTACT EXPERT</a>
 </header>
 
@@ -94,7 +97,7 @@
 <div class="search-area">
     <div class="search-wrap">
         <i class="fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Search by car brand or part type (e.g. BMW Brakes)..." onkeyup="search()">
+        <input type="text" id="searchInput" placeholder="Search by car brand or part type..." onkeyup="search()">
     </div>
 </div>
 
