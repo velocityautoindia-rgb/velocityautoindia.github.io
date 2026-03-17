@@ -1041,71 +1041,11 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#brands">Brands</a></li>
                     <li><a href="market-place.html">Marketplace</a></li>
-                   <li style="list-style: none; margin: 20px 0; display: flex; justify-content: center;">
-    <a href="coming-soon.html" class="orbit-btn" onclick="playLaunchSound(event)">
-        Launching 19th March
-    </a>
-</li>
-    <style>
-        /* The Orbit Animation */
-        @keyframes orbit {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(5px, 5px); }
-            50% { transform: translate(0, 10px); }
-            75% { transform: translate(-5px, 5px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        .orbit-btn {
-            <audio id="launchSound" src="Starwars theme_john Williams.mp3" preload="auto"></audio>
-
-</body>
-</html>
-<script>
-function playLaunchSound(e) {
-    // 1. Prevent immediate jump to the next page
-    e.preventDefault(); 
-    
-    // 2. Find and play the audio
-    const audio = document.getElementById('launchSound');
-    audio.play();
-    
-    // 3. Wait 1.2 seconds (so they hear the sound) then redirect
-    setTimeout(() => {
-        window.location.href = e.currentTarget.getAttribute('href');
-    }, 1200); 
-}
-</script>
-            
-            display: inline-block;
-            background-color: #000000;
-            color: #FFD700;
-            padding: 14px 30px;
-            text-decoration: none;
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            border: 2px solid #FFD700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            border-radius: 4px;
-            /* Slow 6-second infinite loop for a premium feel */
-            animation: orbit 6s ease-in-out infinite; 
-            transition: all 0.3s ease;
-        }
-
-        .orbit-btn:hover {
-            box-shadow: 0 0 30px #FFD700;
-            background: #111;
-            animation-play-state: paused; /* Stops circling when user tries to click */
-            transform: scale(1.1);
-        }
-    </style>
-
-    <a href="coming-soon.html" class="orbit-btn">
-        Launching 19th March
-    </a>
-</li>
+    <li style="list-style: none; margin: 0 10px; display: flex; align-items: center;">
+            <a href="coming-soon.html" class="orbit-btn" onclick="playLaunchSound(event)">
+                Launching 19th March
+            </a>
+        </li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
