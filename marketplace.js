@@ -27,9 +27,9 @@ function triggerSearch() {
 
     // Search through the memory
     const filtered = inventory.filter(item => {
-        return item.brand.toLowerCase().includes(input) || 
+        return brandName.toLowerCase().includes(input) || 
                item.part.toLowerCase().includes(input) || 
-               item.desc.toLowerCase().includes(input);
+               description.toLowerCase().includes(input);
     });
 
     // Show the results on the screen
@@ -37,8 +37,8 @@ function triggerSearch() {
         const card = `
             <div style="border:1px solid #D4AF37; padding:15px; margin:10px; border-radius:10px; background:white;">
                 <h4 style="color:#002D62;">${item.part}</h4>
-                <p><b>Brand:</b> ${item.brand}</p>
-                <p>${item.desc}</p>
+                <p><b>Brand:</b> ${brandName}</p>
+                <p>${description}</p>
                 <button style="background:#25D366; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">
                     I NEED THIS PART
                 </button>
