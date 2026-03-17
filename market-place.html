@@ -96,65 +96,7 @@
     </div>
 </div>
 
-<main class="parts-container" id="partsList">
-    </main>
-
-<section class="vin-banner">
-    <h2>Can't find a specific part?</h2>
-    <p>Provide your 17-digit VIN for an exact compatibility match.</p>
-    <div class="vin-form">
-        <input type="text" id="vinBox" placeholder="Enter VIN Number">
-        <button onclick="checkVin()">VERIFY</button>
-    </div>
-</section>
-
-<footer>
-    &copy; 2026 Velocity Auto India | Authenticity Guaranteed
-</footer>
-
-<script>
-    // 1. THE INVENTORY DATA
-    const inventory = [
-        { brand: "Mercedes M276, BMW N55/B58, Audi EA888, Porsche MA1", part: "Engine Assembly", desc: "Complete engine units and rebuilds" },
-        { brand: "Porsche 9A1, BMW S55/S58, Audi RS TFSI", part: "Pistons & Rings", desc: "High-performance pistons and rings" },
-        { brand: "Mercedes Bosch, BMW Siemens, Audi Continental", part: "Fuel Injectors", desc: "High-precision fuel injection systems" },
-        { brand: "Porsche Sport, Mercedes AMG, BMW M, Akrapovic", part: "Performance Exhaust", desc: "High-flow manifolds and systems" },
-        { brand: "Mercedes AIRMATIC, Range Rover EAS, Audi Adaptive", part: "Air Suspension", desc: "Adaptive air suspension systems" },
-        { brand: "Porsche PCCB, Mercedes AMG Carbon, BMW M Carbon", part: "Carbon-Ceramic Brakes", desc: "High-performance ceramic discs" },
-        { brand: "Mercedes 7G-Tronic, BMW ZF 8HP, Audi Tiptronic", part: "Automatic Transmission", desc: "Complete transmission units" },
-        { brand: "Range Rover, Audi Quattro, BMW xDrive", part: "4WD Transfer Case", desc: "All-wheel drive transfer units" },
-        { brand: "Mercedes, BMW, Audi, Volvo", part: "Adaptive Cruise Control", desc: "ACC radar and control modules" },
-        { brand: "Michelin Pilot Sport 4S, Pirelli P-Zero, Continental", part: "Performance Tires", desc: "High-performance luxury tires" }
-    ];
-
-    // 2. INITIALIZE FUZZY SEARCH
-    const fuse = new Fuse(inventory, {
-        keys: ['brand', 'part', 'desc'],
-        threshold: 0.3
-    });
-
-    // 3. SEARCH FUNCTION
-    function search() {
-        const term = document.getElementById('searchInput').value;
-        const grid = document.getElementById('partsList');
-        
-        if (term.length < 2) {
-            grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; opacity:0.5; padding:50px;">Start typing to search 175+ luxury parts...</p>';
-            return;
-        }
-
-        const results = fuse.search(term);
-        grid.innerHTML = ''; 
-
-        if (results.length === 0) {
-            grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:50px;">No match found. Contact our expert for custom sourcing.</p>';
-            return;
-        }
-
-        results.forEach(r => {
-            const item = r.item;
-            grid.innerHTML += `
-                <div class="card">
+<script src="marketplace.js"></script>
                     <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
                     <div class="card-content">
                         <span class="brand">${item.brand}</span>
