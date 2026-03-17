@@ -52,20 +52,36 @@ function search() {
     }
 
     // 4. Build the cards for each result
-    results.forEach(r => {
-        const item = r.item;
-        grid.innerHTML += `
-            <div class="card">
-                <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
-                <div class="card-content">
-                    <span class="brand">${item.brandName}</span>
-                    <h3 class="title">${item.part}</h3>
-                    <p style="font-size: 13px; color: #666; margin-bottom: 15px;">${item.description}</p>
-                    <a href="https://wa.me/919611991902?text=Inquiry for: ${item.part} (${item.brandName})" class="btn-inquiry">I NEED THIS PART</a>
-                </div>
+  results.forEach(r => {
+    const item = r.item;
+    
+    // Logic to pick the right icon based on the brand name
+    let brandIcon = "fa-car-side"; // Default icon
+    const lowerBrand = item.brandName.toLowerCase();
+    
+    if (lowerBrand.includes("mercedes")) brandIcon = "fa-m-circle"; // Custom icon placeholder
+    if (lowerBrand.includes("bmw")) brandIcon = "fa-b"; 
+    if (lowerBrand.includes("porsche")) brandIcon = "fa-p";
+    if (lowerBrand.includes("audi")) brandIcon = "fa-ring"; 
+
+    grid.innerHTML += `
+        <div class="card">
+            <div class="img-placeholder" style="background: #fdfdfd; border-bottom: 2px solid var(--bg-light);">
+                <i class="fas ${brandIcon}" style="color: var(--navy); opacity: 0.8;"></i>
             </div>
-        `;
-    });
+            <div class="card-content">
+                <span class="brand" style="color: var(--gold); background: rgba(197, 160, 89, 0.1); padding: 2px 8px; border-radius: 4px;">
+                    ${item.brandName}
+                </span>
+                <h3 class="title">${item.part}</h3>
+                <p style="font-size: 13px; color: #555; margin-bottom: 15px; min-height: 40px;">${item.description}</p>
+                <a href="https://wa.me/919611991902?text=Inquiry for: ${item.part} (${item.brandName})" class="btn-inquiry">
+                    <i class="fab fa-whatsapp"></i> I NEED THIS PART
+                </a>
+            </div>
+        </div>
+    `;
+});
 }
 // 4. VIN VERIFICATION
 function checkVin() {
