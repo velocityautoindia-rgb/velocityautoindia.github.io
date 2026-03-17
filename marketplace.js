@@ -92,3 +92,13 @@ function checkVin() {
 
 // 5. START UP
 window.onload = search;
+function setSearch(brand) {
+    document.getElementById('searchInput').value = brand;
+    search(); // This triggers the search automatically
+}
+// ... existing code above ...
+
+function setSearch(brand) {
+    document.getElementById('searchInput').value = brand;
+    search(); 
+}
