@@ -15,132 +15,130 @@
             --navy: #001a33;
             --gold: #FFD700;
             --white: #ffffff;
-            --light-bg: #f8f9fa;
-            --border: #e0e0e0;
+            --bg-light: #f9f9f9;
+            --border: #eeeeee;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--white); color: #333; line-height: 1.6; }
 
-        /* HEADER */
+        /* NAVIGATION BAR */
         header { 
-            background: var(--white); 
+            background: rgba(255, 255, 255, 0.98); 
             padding: 15px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
         }
         .logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 22px; color: var(--navy); text-decoration: none; }
         .logo span { color: var(--gold); }
+        .nav-link { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 13px; letter-spacing: 1px; }
 
-        /* HERO AREA */
-        .market-hero { 
-            background: linear-gradient(rgba(0, 26, 51, 0.85), rgba(0, 26, 51, 0.85)), url('velocity-dealership.png') center/cover no-repeat;
-            padding: 80px 20px; 
-            text-align: center; 
-            color: white; 
+        /* SHOWROOM HERO */
+        .hero { 
+            background: linear-gradient(rgba(0, 26, 51, 0.8), rgba(0, 26, 51, 0.8)), url('velocity-dealership.png') center/cover no-repeat;
+            padding: 100px 20px; text-align: center; color: white; 
         }
-        .market-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 10px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 10px; }
+        .hero p { font-weight: 300; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; opacity: 0.8; }
 
-        /* SEARCH BAR */
-        .search-container { background: var(--light-bg); padding: 30px 5%; border-bottom: 1px solid var(--border); }
+        /* SEARCH SECTION */
+        .search-area { background: var(--bg-light); padding: 30px 5%; border-bottom: 1px solid var(--border); }
         .search-wrap { max-width: 600px; margin: 0 auto; position: relative; }
-        .search-wrap input { width: 100%; padding: 15px 50px; border-radius: 30px; border: 1px solid var(--border); outline: none; font-size: 16px; }
-        .search-wrap i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #888; }
+        .search-wrap input { width: 100%; padding: 15px 50px; border-radius: 30px; border: 1px solid var(--border); outline: none; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .search-wrap i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #aaa; }
 
-        /* PRODUCT GRID */
-        .parts-grid { padding: 50px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto; }
-        .part-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: 0.3s; background: white; }
-        .part-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--gold); }
-        .part-img-box { height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: #ccc; }
-        .part-content { padding: 20px; }
-        .brand-tag { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
-        .part-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin: 5px 0; }
+        /* GRID LAYOUT */
+        .parts-container { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .card { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s ease; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .img-placeholder { height: 220px; background: #f4f4f4; display: flex; align-items: center; justify-content: center; font-size: 60px; color: #ddd; }
+        .card-content { padding: 25px; }
+        .brand { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        .title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin: 8px 0; }
         
-        .btn-wa { 
-            display: block; background: var(--navy); color: white; text-align: center; padding: 12px; 
-            text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: 600; font-size: 14px;
+        .btn-inquiry { 
+            display: block; width: 100%; padding: 14px; background: var(--navy); color: white; text-align: center; 
+            text-decoration: none; border-radius: 6px; margin-top: 20px; font-weight: 600; transition: 0.3s;
         }
-        .btn-wa:hover { background: var(--gold); color: var(--navy); }
+        .btn-inquiry:hover { background: var(--gold); color: var(--navy); }
 
-        /* VIN SECTION */
-        .vin-section { background: var(--navy); color: white; padding: 60px 20px; text-align: center; }
-        .vin-input-group { max-width: 500px; margin: 25px auto 0; display: flex; gap: 10px; }
-        .vin-input-group input { flex: 1; padding: 12px; border-radius: 5px; border: none; }
-        .vin-input-group button { background: var(--gold); border: none; padding: 0 20px; border-radius: 5px; font-weight: 700; cursor: pointer; }
+        /* VIN CHECK */
+        .vin-banner { background: var(--navy); color: white; padding: 70px 20px; text-align: center; }
+        .vin-form { max-width: 550px; margin: 30px auto 0; display: flex; gap: 10px; }
+        .vin-form input { flex: 1; padding: 15px; border-radius: 6px; border: none; font-size: 16px; }
+        .vin-form button { background: var(--gold); border: none; padding: 0 30px; border-radius: 6px; font-weight: 800; cursor: pointer; color: var(--navy); }
 
-        footer { background: #111; color: #555; padding: 30px; text-align: center; font-size: 12px; }
+        footer { background: #000; color: #666; padding: 40px; text-align: center; font-size: 13px; }
     </style>
 </head>
 <body>
 
 <header>
     <a href="index.html" class="logo">VELOCITY <span>AUTO INDIA</span></a>
-    <a href="https://wa.me/919611991902" style="text-decoration:none; color:var(--navy); font-weight:700; font-size:13px;"><i class="fab fa-whatsapp"></i> HELP</a>
+    <a href="https://wa.me/919611991902" class="nav-link"><i class="fab fa-whatsapp"></i> CONTACT EXPERT</a>
 </header>
 
-<section class="market-hero">
-    <h1>Luxury Parts Catalog</h1>
-    <p>Genuine Sourcing for Bentley, Rolls Royce & More</p>
+<section class="hero">
+    <h1>Luxury Inventory</h1>
+    <p>Precision Sourcing for the Elite</p>
 </section>
 
-<div class="search-container">
+<div class="search-area">
     <div class="search-wrap">
         <i class="fas fa-search"></i>
-        <input type="text" id="partSearch" placeholder="Search by brand or part name..." onkeyup="filterParts()">
+        <input type="text" id="searchInput" placeholder="Search by car brand or part type..." onkeyup="search()">
     </div>
 </div>
 
-<main class="parts-grid" id="grid">
-    <div class="part-card" data-brand="bentley">
-        <div class="part-img-box"><i class="fas fa-car"></i></div>
-        <div class="part-content">
-            <span class="brand-tag">Bentley</span>
-            <h3 class="part-title">Continental GT Brake Kit</h3>
-            <a href="https://wa.me/919611991902?text=Inquiry for Bentley Brake Kit" class="btn-wa">Check Availability</a>
+<main class="parts-container" id="partsList">
+    <div class="card" data-search="bentley continental gt brake pads">
+        <div class="img-placeholder"><i class="fas fa-car-side"></i></div>
+        <div class="card-content">
+            <span class="brand">Bentley</span>
+            <h3 class="title">Continental GT Ceramic Brakes</h3>
+            <a href="https://wa.me/919611991902?text=Inquiry: Bentley Brake Kit" class="btn-inquiry">Price on Request</a>
         </div>
     </div>
-    <div class="part-card" data-brand="mercedes">
-        <div class="part-img-box"><i class="fas fa-lightbulb"></i></div>
-        <div class="part-content">
-            <span class="brand-tag">Mercedes-Benz</span>
-            <h3 class="part-title">S-Class LED Headlight</h3>
-            <a href="https://wa.me/919611991902?text=Inquiry for Mercedes S-Class Headlight" class="btn-wa">Check Availability</a>
+    <div class="card" data-search="rolls royce ghost grill phantom">
+        <div class="img-placeholder"><i class="fas fa-gem"></i></div>
+        <div class="card-content">
+            <span class="brand">Rolls Royce</span>
+            <h3 class="title">Ghost Series II Front Grille</h3>
+            <a href="https://wa.me/919611991902?text=Inquiry: Rolls Royce Grille" class="btn-inquiry">Price on Request</a>
         </div>
     </div>
 </main>
 
-<section class="vin-section">
-    <h2>Can't find your part?</h2>
-    <p>Send us your VIN for a 100% accurate match.</p>
-    <div class="vin-input-group">
-        <input type="text" id="vinNum" placeholder="Enter 17-digit VIN">
-        <button onclick="sendVin()">SEND</button>
+<section class="vin-banner">
+    <h2>Can't find a specific part?</h2>
+    <p>Provide your 17-digit VIN for an exact compatibility match.</p>
+    <div class="vin-form">
+        <input type="text" id="vinBox" placeholder="Enter VIN Number">
+        <button onclick="checkVin()">VERIFY</button>
     </div>
 </section>
 
 <footer>
-    &copy; 2026 Velocity Auto India | Luxury OEM Parts Specialist
+    &copy; 2026 Velocity Auto India | Authenticity Guaranteed
 </footer>
 
 <script>
-    function filterParts() {
-        let input = document.getElementById('partSearch').value.toLowerCase();
-        let cards = document.getElementsByClassName('part-card');
-        for (let card of cards) {
-            let title = card.querySelector('.part-title').innerText.toLowerCase();
-            card.style.display = title.includes(input) ? "block" : "none";
-        }
+    function search() {
+        let term = document.getElementById('searchInput').value.toLowerCase();
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(c => {
+            let info = c.getAttribute('data-search');
+            c.style.display = info.includes(term) ? "block" : "none";
+        });
     }
 
-    function sendVin() {
-        let vin = document.getElementById('vinNum').value;
-        if(vin.length < 5) return alert("Please enter a valid VIN");
-        window.location.href = `https://wa.me/919611991902?text=Hi, check compatibility for VIN: ${vin}`;
+    function checkVin() {
+        let v = document.getElementById('vinBox').value;
+        if(v.length < 1) return alert("Please enter a VIN");
+        window.location.href = `https://wa.me/919611991902?text=VIN Compatibility Check: ${v}`;
     }
 </script>
 
