@@ -1471,11 +1471,22 @@
         
        <div class="footer-bottom">
     
-    <div class="footer-visitor-counter">
-        <span class="pulse-dot"></span>
-        <span id="visitor-count">1,248</span> 
-        <span class="counter-label">Distinguished Visitors</span>
-    </div>
+       <div class="footer-visitor-counter" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+    <span class="pulse-dot" style="height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #00ff00; animation: pulse 1.5s infinite;"></span>
+    <span id="busuanzi_value_site_pv" style="font-family: 'Courier New', monospace; font-weight: bold; color: #FFD700; font-size: 1.2rem;">...</span>
+    <span class="counter-label" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ffffff;">Distinguished Visitors</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<style>
+    
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+</style>
 
     <p>© 2026 Velocity Auto India. All Rights Reserved.</p>
     <div class="footer-tagline">Excellence in Motion</div>
