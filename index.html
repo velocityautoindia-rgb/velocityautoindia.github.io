@@ -1474,26 +1474,34 @@
                     <a href="https://www.linkedin.com/in/velocityautoindia/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.facebook.com/VelocityAutoIndia" target="_blank" title="Facebook" class="fa facebook"><i class="fa fa-facebook"></i></a>
                 </div>
-            </div>
-        </div>
-        
+                 
        <div class="footer-bottom">
-    
-       <div class="footer-visitor-counter" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
-    <span style="height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; animation: pulse 1.5s infinite;"></span>
+    <div class="footer-visitor-counter" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+    <span class="pulse-dot"></span>
     <span id="busuanzi_value_site_pv" style="font-family: monospace; font-weight: bold; color: #FFD700; font-size: 1.2rem;">...</span>
     <span style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ffffff;">Elite Visitors</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<script>
-document.getElementById('marketplace-link').addEventListener('click', function() {
-  gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'Marketplace Tab' });
-});
-</script>
-
 <style>
+    .pulse-dot {
+        height: 10px;
+        width: 10px;
+        background-color: #00ff00;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 8px #00ff00;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+    }
+</style>
+
 @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
