@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <!-- saved from url=(0041)https://velocityautoindia.github.io/#home -->
 <html lang="en" class="js-focus-visible" data-js-focus-visible=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- META TAGS & SEO -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-059H4CBVYV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}  
+  gtag('js', new Date());
+  gtag('config', 'G-059H4CBVYV');
+</script>
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- META TAGS & SEO -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Genuine OEM spare parts for Bentley, Rolls Royce, Lamborghini, Ferrari, Porsche, and Maserati. 20+ years of automotive excellence for ultra-luxury automobiles.">
     <meta name="keywords" content="OEM parts, Bentley, Rolls Royce, Lamborghini, Ferrari, Porsche, Maserati, luxury car parts">
     <meta name="author" content="Velocity Auto India">
@@ -1052,7 +1060,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#brands">Brands</a></li>
-                    <li><a href="market-place.html">Marketplace</a></li>
+                    <li><a href="market-place.html" id="marketplace-link">Marketplace</a></li>
                     <li style="list-style: none; margin: 20px 0; display: flex; justify-content: center;">
     <style>
         /* The Orbit Animation */
@@ -1472,14 +1480,26 @@
        <div class="footer-bottom">
     
        <div class="footer-visitor-counter" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
-    <span class="pulse-dot" style="height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #00ff00; animation: pulse 1.5s infinite;"></span>
-    <span id="busuanzi_value_site_pv" style="font-family: 'Courier New', monospace; font-weight: bold; color: #FFD700; font-size: 1.2rem;">...</span>
-    <span class="counter-label" style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ffffff;">Distinguished Visitors</span>
+    <span style="height: 8px; width: 8px; background-color: #00ff00; border-radius: 50%; box-shadow: 0 0 8px #00ff00; animation: pulse 1.5s infinite;"></span>
+    <span id="busuanzi_value_site_pv" style="font-family: monospace; font-weight: bold; color: #FFD700; font-size: 1.2rem;">...</span>
+    <span style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #ffffff;">Elite Visitors</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+<script>
+document.getElementById('marketplace-link').addEventListener('click', function() {
+  gtag('event', 'click', { 'event_category': 'Navigation', 'event_label': 'Marketplace Tab' });
+});
+</script>
+
 <style>
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+</style>
     
 @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
